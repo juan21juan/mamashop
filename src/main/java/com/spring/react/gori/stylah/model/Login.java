@@ -18,34 +18,23 @@ public class Login {
 
     private String role;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "salesPersonId", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
     @JsonIgnore
-    private SalesPerson salesPerson;
+    private Users users;
 
     public Login(){}
 
-    public Login(String username, String password, String role, SalesPerson salesPerson) {
+    public Login(String username, String password, String role, Users users) {
+        super();
         this.username = username;
         this.password = password;
         this.role = role;
-        this.salesPerson = salesPerson;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.users = users;
     }
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -56,6 +45,18 @@ public class Login {
         this.password = password;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
     public String getRole() {
         return role;
     }
@@ -64,11 +65,11 @@ public class Login {
         this.role = role;
     }
 
-    public SalesPerson getSalesPerson() {
-        return salesPerson;
+    public Long getId() {
+        return id;
     }
 
-    public void setSalesPerson(SalesPerson salesPerson) {
-        this.salesPerson = salesPerson;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

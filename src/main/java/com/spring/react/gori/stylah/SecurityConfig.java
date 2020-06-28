@@ -65,4 +65,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
+
+//    for development phase only
+//    @Bean
+//    @Override
+//    public UserDetailsService loginService(){
+//        UserDetails user = User.withDefaultPasswordEncoder()
+//                .username("user")
+//                .password("123456")
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
 }

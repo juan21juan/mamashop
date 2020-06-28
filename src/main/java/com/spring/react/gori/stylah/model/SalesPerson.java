@@ -25,10 +25,6 @@ public class SalesPerson {
             cascade = CascadeType.ALL)
     private List<Sale> saleList;
 
-    @OneToOne(mappedBy = "salesPerson", fetch = FetchType.LAZY, optional = false,
-            cascade = CascadeType.ALL)
-    private Login login;
-
     public SalesPerson(){}
 
     public SalesPerson(Long salesPersonId, String salesPersonName, Integer age, String gender) {
