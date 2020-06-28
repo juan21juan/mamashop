@@ -10,6 +10,7 @@ public class SalesPerson {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long salesPersonId;
 
     @Column
@@ -27,8 +28,7 @@ public class SalesPerson {
 
     public SalesPerson(){}
 
-    public SalesPerson(Long salesPersonId, String salesPersonName, Integer age, String gender) {
-        this.salesPersonId = salesPersonId;
+    public SalesPerson(String salesPersonName, Integer age, String gender) {
         this.salesPersonName = salesPersonName;
         this.age = age;
         this.gender = gender;

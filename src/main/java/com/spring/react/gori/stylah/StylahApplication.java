@@ -29,15 +29,15 @@ public class StylahApplication {
 		SpringApplication.run(StylahApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner runner(){
-//		return args -> {
-//
-//			Users user = new Users("John","Aparejado","Orani, Bataan", "Male", 19880921L, 20190203L);
-//			userRepository.save(user);
-//
-//			Login login = new Login("juan21", "$2y$12$edFEZl1l3gVo4iCcq96p3.Iz/Yinb5wpa3C.shgYth6jKlj928o3O", "ADMIN", user);
-//			loginRepository.save(login);
-//		};
-//	}
+	@Bean
+	CommandLineRunner runner(){
+		return args -> {
+
+			Users user = new Users("John","Aparejado","Orani, Bataan", "Male", 19880921L, 20190203L);
+			userRepository.save(user);
+
+			Login login = new Login("test", "$2y$12$edFEZl1l3gVo4iCcq96p3.Iz/Yinb5wpa3C.shgYth6jKlj928o3O", "ADMIN", user);
+			loginRepository.save(login);
+		};
+	}
 }
