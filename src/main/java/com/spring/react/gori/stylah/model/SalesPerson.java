@@ -13,13 +13,13 @@ public class SalesPerson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long salesPersonId;
 
-    @Column
+    @Column(nullable = false)
     private String salesPersonName;
 
-    @Column
+    @Column(nullable = false)
     private Integer age;
 
-    @Column
+    @Column(nullable = false)
     private String gender;
 
     @OneToMany(mappedBy = "salesPerson", fetch = FetchType.LAZY,

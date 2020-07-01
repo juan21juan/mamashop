@@ -18,20 +18,16 @@ public class Sale {
     private SalesPerson salesPerson;
 
     @Column
-    private Date date;
-
-    @Column
     private String productName;
 
-    @Column Integer quantity;
-
     @Column Float price;
+
+    @Column Integer quantity;
 
     public Sale(){}
 
     public Sale(SalesPerson salesPerson, Date date, String productName, Integer quantity, Float price) {
         this.salesPerson = salesPerson;
-        this.date = date;
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
@@ -51,14 +47,6 @@ public class Sale {
 
     public void setSalesPerson(SalesPerson salesPerson) {
         this.salesPerson = salesPerson;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getProductName() {
