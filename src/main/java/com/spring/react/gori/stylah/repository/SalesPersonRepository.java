@@ -6,4 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface SalesPersonRepository extends JpaRepository<SalesPerson, Long> {
+    @Override
+    SalesPerson getOne(Long salesPersonId);
 }

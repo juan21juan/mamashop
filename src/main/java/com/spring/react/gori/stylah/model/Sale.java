@@ -1,6 +1,8 @@
 package com.spring.react.gori.stylah.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -14,6 +16,7 @@ public class Sale {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "salesPersonId", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private SalesPerson salesPerson;
 
@@ -26,7 +29,7 @@ public class Sale {
 
     public Sale(){}
 
-    public Sale(SalesPerson salesPerson, Date date, String productName, Integer quantity, Float price) {
+    public Sale(SalesPerson salesPerson, String productName, Integer quantity, Float price) {
         this.salesPerson = salesPerson;
         this.productName = productName;
         this.quantity = quantity;

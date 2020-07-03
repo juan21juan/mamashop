@@ -25,11 +25,6 @@ public class SalesPersonService implements ISalesPersonService {
     }
 
     @Override
-    public SalesPerson getSalesPersonById(Long id) {
-        return salesPersonRepository.findById(id).get();
-    }
-
-    @Override
     public void delete(Long id) {
         salesPersonRepository.deleteById(id);
     }

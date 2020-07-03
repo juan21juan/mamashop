@@ -9,7 +9,5 @@ public interface ISalesPersonService {
 
     void saveOrUpdate(SalesPerson salesPerson);
 
-    SalesPerson getSalesPersonById(Long id);
-
     void delete(Long id);
 }
