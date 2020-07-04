@@ -1,8 +1,7 @@
 package com.spring.react.gori.stylah.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -17,7 +16,7 @@ public class SalesPerson {
     private String salesPersonName;
 
     @Column(nullable = false)
-    private Integer age;
+    private Date birthdate;
 
     @Column(nullable = false)
     private String gender;
@@ -28,9 +27,9 @@ public class SalesPerson {
 
     public SalesPerson(){}
 
-    public SalesPerson(String salesPersonName, Integer age, String gender) {
+    public SalesPerson(String salesPersonName, Date birthdate, String gender) {
         this.salesPersonName = salesPersonName;
-        this.age = age;
+        this.birthdate = birthdate;
         this.gender = gender;
     }
 
@@ -50,12 +49,12 @@ public class SalesPerson {
         this.salesPersonName = salesPersonName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getGender() {
