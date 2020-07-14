@@ -2,6 +2,7 @@ package com.spring.react.gori.stylah.service;
 
 import com.spring.react.gori.stylah.model.Sale;
 import com.spring.react.gori.stylah.repository.SalesRepository;
+import com.spring.react.gori.stylah.utils.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +34,5 @@ public class SalesService implements ISalesService {
     public void delete(Long id) {
         salesRepository.deleteById(id);
     }
+
 }

@@ -10,4 +10,6 @@ public interface ISalesPersonService {
     void saveOrUpdate(SalesPerson salesPerson);
 
     void delete(Long id);
+
+    boolean validateGender(String gender);
 }

@@ -5,6 +5,7 @@ import com.spring.react.gori.stylah.model.SalesPerson;
 import com.spring.react.gori.stylah.repository.SalesPersonRepository;
 import com.spring.react.gori.stylah.service.ISalesPersonService;
 import com.spring.react.gori.stylah.service.ISalesService;
+import com.spring.react.gori.stylah.utils.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class SalesPersonController {
     @PostMapping("/salesPersons/{salesPersonId}/sales")
     private Long createSalesForSalesPerson(@PathVariable Long salesPersonId, @RequestBody Sale sale){
         SalesPerson salesPerson = salesPersonRepository.getOne(salesPersonId);
-
+        sale.setProductName(TextUtils.getInstance().getSentenceCase(sale.getProductName()));
         sale.setSalesPerson(salesPerson);
         salesService.saveOrUpdate(sale);
 
@@ -32,9 +33,40 @@ public class SalesPersonController {
 
     @PostMapping("/salesPersons")
     private Long saveSalesPerson(@RequestBody SalesPerson salesPerson){
+
+        if(salesPersonService.validateGender(salesPerson.getGender())){
+            salesPerson.setGender(
+                    TextUtils.getInstance().getSentenceCase(salesPerson.getGender()));
+        }else{
+            salesPerson.setGender(null);
+        }
+
+        salesPerson.setSalesPersonName(
+                TextUtils.getInstance().getSentenceCase(salesPerson.getSalesPersonName()));
+
         salesPersonService.saveOrUpdate(salesPerson);
 
         return salesPerson.getSalesPersonId();
+    }
+
+    @PutMapping("/salesPersons")
+    private SalesPerson update(@RequestBody SalesPerson salesPerson){
+        if(salesPersonService.validateGender(salesPerson.getGender())){
+            salesPerson.setGender(
+                    TextUtils.getInstance().getSentenceCase(salesPerson.getGender()));
+        }else{
+            salesPerson.setGender(null);
+        }
+
+        salesPerson.setSalesPersonName(
+                TextUtils.getInstance().getSentenceCase(salesPerson.getSalesPersonName()));
+
+        return salesPerson;
+    }
+
+    @DeleteMapping("/salesPersons/{salesPersonId}")
+    private void deleteSalesPerson(@PathVariable("salesPersonId") Long id){
+        salesPersonService.delete(id);
     }
 
     @GetMapping("/salesPersons/{salesPersonId}")
@@ -45,16 +77,5 @@ public class SalesPersonController {
     @GetMapping("/salesPersons")
     private Iterable<SalesPerson> getSalesPerson(){
         return salesPersonService.findAll();
-    }
-
-    @PutMapping("/salesPersons")
-    private SalesPerson update(@RequestBody SalesPerson salesPerson){
-        salesPersonService.saveOrUpdate(salesPerson);
-        return salesPerson;
-    }
-
-    @DeleteMapping("/salesPersons/{salesPersonId}")
-    private void deleteSalesPerson(@PathVariable("salesPersonId") Long id){
-        salesPersonService.delete(id);
     }
 }

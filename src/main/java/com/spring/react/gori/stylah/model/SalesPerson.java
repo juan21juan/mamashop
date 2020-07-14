@@ -1,7 +1,9 @@
 package com.spring.react.gori.stylah.model;
 
 import javax.persistence.*;
+import javax.validation.ConstraintViolationException;
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -28,9 +30,9 @@ public class SalesPerson {
     public SalesPerson(){}
 
     public SalesPerson(String salesPersonName, Date birthdate, String gender) {
-        this.salesPersonName = salesPersonName;
-        this.birthdate = birthdate;
-        this.gender = gender;
+        setSalesPersonName(salesPersonName);
+        setBirthdate(birthdate);
+        setGender(gender);
     }
 
     public Long getSalesPersonId() {

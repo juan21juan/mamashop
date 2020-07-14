@@ -20,12 +20,14 @@ public class Sale {
     @JsonIgnore
     private SalesPerson salesPerson;
 
-    @Column
+    @Column(nullable = false)
     private String productName;
 
-    @Column Float price;
+    @Column(nullable = false)
+    Float price;
 
-    @Column Integer quantity;
+    @Column(nullable = false)
+    Integer quantity;
 
     public Sale(){}
 
