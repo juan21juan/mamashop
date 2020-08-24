@@ -12,8 +12,4 @@ public class LoginController {
     @Autowired
     private LoginRepository loginRepository;
 
-    @RequestMapping("/logins")
-    public Iterable<Login> getUsers(){
-        return loginRepository.findAll();
-    }
 }

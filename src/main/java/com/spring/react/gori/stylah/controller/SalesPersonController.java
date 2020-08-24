@@ -31,7 +31,7 @@ public class SalesPersonController {
         return sale.getSalesId();
     }
 
-    @PostMapping("/salesPersons")
+    @PostMapping("/createSalesPerson")
     private Long saveSalesPerson(@RequestBody SalesPerson salesPerson){
 
         if(salesPersonService.validateGender(salesPerson.getGender())){
@@ -49,8 +49,9 @@ public class SalesPersonController {
         return salesPerson.getSalesPersonId();
     }
 
-    @PutMapping("/salesPersons")
-    private SalesPerson update(@RequestBody SalesPerson salesPerson){
+    @PutMapping("/updateSalesPerson/{salesPersonId}")
+    private SalesPerson update(@RequestBody SalesPerson salesPerson, @PathVariable("salesPersonId") Long salesPersonId){
+
         if(salesPersonService.validateGender(salesPerson.getGender())){
             salesPerson.setGender(
                     TextUtils.getInstance().getSentenceCase(salesPerson.getGender()));
@@ -61,7 +62,15 @@ public class SalesPersonController {
         salesPerson.setSalesPersonName(
                 TextUtils.getInstance().getSentenceCase(salesPerson.getSalesPersonName()));
 
-        return salesPerson;
+        SalesPerson foundSalesPerson = salesPersonRepository.findById(salesPersonId).get();
+
+        foundSalesPerson.setSalesPersonName(salesPerson.getSalesPersonName());
+        foundSalesPerson.setGender(salesPerson.getGender());
+        foundSalesPerson.setBirthdate(salesPerson.getBirthdate());
+
+        salesPersonService.saveOrUpdate(foundSalesPerson);
+
+        return foundSalesPerson;
     }
 
     @DeleteMapping("/salesPersons/{salesPersonId}")
